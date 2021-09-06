@@ -291,4 +291,3 @@ function set_start_node(sel_first, sel_menu) {
       update_menu_vis($men);
    }, false);
 }
-
