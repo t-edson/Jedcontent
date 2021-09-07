@@ -222,7 +222,17 @@ function select_item($items, n) {
       n_shown++;
    }
 }
-function set_start_node(sel_first, sel_menu) {
+function set_start_node(sel_first, sel_menu, onselect) {
+   /* Define el bloque en donde se implementará el menú contextual. 
+   Parámetros:
+      -sel_first -> Selector Jquery del elemento editable en donde se implementará
+         el menú contextual.
+      -sel_menu  -> Selector jquery de la lista  que se usará para generar el menú 
+         contextual.
+      -onselect  -> Función evento que se llamará cuando se haga la selección de un 
+         ítem del menú contextual. La función recibe un parámetro con el texto del ítem
+         seleccionado.
+   */
    $firstblk = $(sel_first);  //Primer bloque
    var $men  = $(sel_menu);    //Menú
    var $items = $men.find("li");
@@ -264,7 +274,7 @@ function set_start_node(sel_first, sel_menu) {
       }
    });
    $firstblk.keypress(function (event) {
-      //Procesa tecla pulsada
+      //Procesa tecla pulsada. 
       var w = event.which;
          switch (w) {
             case 47:  //Caracter '/'
@@ -274,7 +284,8 @@ function set_start_node(sel_first, sel_menu) {
                   del_cur_command();
                   var $act=$items.filter('.act');  //Elemento activo
                   $men.hide();
-                  alert($act.get(0).innerText);
+                  //alert($act.get(0).innerText);
+                  onselect($act.get(0).innerText)    //Llama a evento
                }
                return false;  //No se permitirá agregar saltos de línea en un bloque
                break;

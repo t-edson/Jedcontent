@@ -27,7 +27,9 @@
    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
    <script src="jedcontent.js"></script>
    <script>
-      set_start_node('#first', '.ctxmenu');
+      set_start_node('#first', '.ctxmenu', function(item_sel) {
+         alert(item_sel);
+      });
    </script>
 </BODY>
 </HTML>
